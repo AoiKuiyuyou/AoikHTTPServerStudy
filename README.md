@@ -6,5 +6,7 @@ Tested working with:
 
 Trace call using [AoikTraceCall](https://github.com/AoiKuiyuyou/AoikTraceCall):
 - [BaseHTTPRequestHandlerTraceCall.py](/src/BaseHTTPRequestHandlerTraceCall.py)
-- [BaseHTTPRequestHandlerTraceCallLog.txt](/src/BaseHTTPRequestHandlerTraceCallLog.txt?raw=True)
-- [BaseHTTPRequestHandlerTraceCallNotes.txt](/src/BaseHTTPRequestHandlerTraceCallNotes.txt?raw=True)
+- [BaseHTTPRequestHandlerTraceCallLogPy2.txt](/src/BaseHTTPRequestHandlerTraceCallLogPy2.txt?raw=True)
+- [BaseHTTPRequestHandlerTraceCallLogPy3.txt](/src/BaseHTTPRequestHandlerTraceCallLogPy3.txt?raw=True)
+- [BaseHTTPRequestHandlerTraceCallNotesPy2.txt](/src/BaseHTTPRequestHandlerTraceCallNotesPy2.txt?raw=True)
+- [BaseHTTPRequestHandlerTraceCallNotesPy3.txt](/src/BaseHTTPRequestHandlerTraceCallNotesPy3.txt?raw=True)
