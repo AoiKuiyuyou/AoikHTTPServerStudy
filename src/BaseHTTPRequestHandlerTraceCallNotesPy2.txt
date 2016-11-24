@@ -4,8 +4,8 @@ __main__.main
     # ----- Create `TCPServer` -----
     SocketServer.TCPServer.__init__
 
-        # ----- Call super constructor -----
-        SocketServer.TCPServer.__init__ -> SocketServer.BaseServer.__init__
+        # ----- Call super method -----
+        SocketServer.TCPServer -> SocketServer.BaseServer.__init__
 
         # ----- Create socket -----
         socket._socketobject.__init__
@@ -13,7 +13,7 @@ __main__.main
         # ----- Call `server_bind` -----
         SocketServer.TCPServer.server_bind
 
-            # ----- Bind socket to server address
+            # ----- Bind socket to server address -----
             socket._socketobject.bind
 
         # ----- Call `server_activate` -----
@@ -23,7 +23,7 @@ __main__.main
             socket._socketobject.listen
 
     # ----- Call `serve_forever` -----
-    SocketServer.TCPServer.serve_forever -> SocketServer.BaseServer.serve_forever
+    SocketServer.TCPServer -> SocketServer.BaseServer.serve_forever
 
         # ----- Loop to poll listening socket's read event -----
         ```
@@ -43,7 +43,7 @@ __main__.main
             # ----- Call `_handle_request_noblock` -----
             # When read event occurs, it means a client is connecting.
             #
-            SocketServer.TCPServer._handle_request_noblock -> SocketServer.BaseServer._handle_request_noblock
+            SocketServer.TCPServer -> SocketServer.BaseServer._handle_request_noblock
 
                 # ----- Call `get_request` -----
                 SocketServer.TCPServer.get_request
@@ -55,22 +55,19 @@ __main__.main
                         socket._socketobject.__init__
 
                 # ----- Call `verify_request` -----
-                SocketServer.TCPServer.verify_request -> SocketServer.BaseServer.verify_request
+                SocketServer.TCPServer -> SocketServer.BaseServer.verify_request
 
                 # ----- Call `process_request` -----
-                SocketServer.TCPServer.process_request -> SocketServer.BaseServer.process_request
+                SocketServer.TCPServer -> SocketServer.BaseServer.process_request
 
                     # ----- Call `finish_request` -----
-                    SocketServer.TCPServer.finish_request -> SocketServer.BaseServer.finish_request
+                    SocketServer.TCPServer -> SocketServer.BaseServer.finish_request
 
                         # ----- Create `self.RequestHandlerClass` instance -----
-                        # In this example, `self.RequestHandlerClass` is
-                        # `__main__.CustomRequestHandler`
-                        #
-                        __main__.CustomRequestHandler.__init__ -> SocketServer.BaseRequestHandler.__init__
+                        __main__.CustomRequestHandler -> SocketServer.BaseRequestHandler.__init__
 
                             # ----- Call `setup` -----
-                            __main__.CustomRequestHandler.setup -> SocketServer.StreamRequestHandler.setup
+                            __main__.CustomRequestHandler -> SocketServer.StreamRequestHandler.setup
 
                                 # ----- Create input file from the socket -----
                                 socket._socketobject.makefile
@@ -85,58 +82,52 @@ __main__.main
                                     socket._fileobject.__init__
 
                             # ----- Call `handle` -----
-                            __main__.CustomRequestHandler.handle -> BaseHTTPServer.BaseHTTPRequestHandler.handle
+                            __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.handle
 
                                 # ----- Call `handle_one_request` -----
-                                __main__.CustomRequestHandler.handle_one_request -> BaseHTTPServer.BaseHTTPRequestHandler.handle_one_request
+                                __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.handle_one_request
 
                                     # ----- Read request line -----
                                     socket._fileobject.readline
 
                                     # ----- Call `parse_request` to parse headers -----
-                                    __main__.CustomRequestHandler.parse_request -> BaseHTTPServer.BaseHTTPRequestHandler.parse_request
+                                    __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.parse_request
 
                                     # ----- Call `do_POST` -----
                                     __main__.CustomRequestHandler.do_POST
-
-                                        # ----- Get `Content-Length` header -----
-                                        mimetools.Message.get -> rfc822.Message.get
 
                                         # ----- Read request body -----
                                         socket._fileobject.read
 
                                         # ----- Call `send_response` -----
-                                        __main__.CustomRequestHandler.send_response -> BaseHTTPServer.BaseHTTPRequestHandler.send_response
+                                        __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.send_response
 
                                             # ----- Send status line -----
                                             socket._fileobject.write
 
                                             # ----- Send `Server` header -----
-                                            __main__.CustomRequestHandler.send_header -> BaseHTTPServer.BaseHTTPRequestHandler.send_header
+                                            __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.send_header
 
                                             # ----- Send `Date` header -----
-                                            __main__.CustomRequestHandler.send_header -> BaseHTTPServer.BaseHTTPRequestHandler.send_header
+                                            __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.send_header
 
                                         # ----- Send header `Content-Length` -----
-                                        __main__.CustomRequestHandler.send_header -> BaseHTTPServer.BaseHTTPRequestHandler.send_header
+                                        __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.send_header
 
                                         # ----- Call `end_headers` -----
-                                        __main__.CustomRequestHandler.end_headers -> BaseHTTPServer.BaseHTTPRequestHandler.end_headers
+                                        __main__.CustomRequestHandler -> BaseHTTPServer.BaseHTTPRequestHandler.end_headers
 
-                                            # ----- Write headers to output `_fileobject` -----
+                                            # ----- Write headers -----
                                             socket._fileobject.write
 
-                                                # ----- Flush output `_fileobject` -----
-                                                socket._fileobject.flush
-
-                                        # ----- Write response body to output `_fileobject` -----
+                                        # ----- Write response body -----
                                         socket._fileobject.write
 
                                     # ----- Flush output `_fileobject` -----
                                     socket._fileobject.flush
 
                             # ----- Call `finish` -----
-                            __main__.CustomRequestHandler.finish -> SocketServer.StreamRequestHandler.finish
+                            __main__.CustomRequestHandler -> SocketServer.StreamRequestHandler.finish
 
                                 # ----- Flush output `_fileobject` -----
                                 socket._fileobject.flush
